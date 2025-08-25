@@ -1,0 +1,237 @@
+Course Outline
+
+25 August 2025
+09:48
+
+	1. Containerization
+  ================
+
+	Ø Monolithic architecture 
+	Ø Microservices architecture 
+	Ø Virtualization 
+	Ø Docker vs Podman
+	Ø Why container
+	Ø What is container
+	Ø Container architecture 
+	Ø Container life cycle 
+	Ø Registry 
+	Ø Podman networks
+	Ø Podman volumes 
+
+
+	2. Containerization orchestration (k8s) 
+  =================================
+
+	Ø Why k8s
+	Ø What is k8s
+	Ø K8s history 
+	Ø K8s features 
+	Ø K8s architecture 
+	Ø K8s :- ns, pod, rs, deployment, service, ingress, configmaps, secrets and helm.
+
+Monolithic architecture
+===================
+
+Virtualization 
+===========
+
+	Ø It is a technology that allows you to run multiple os on a single physical machine by abstracting hardware resources 
+
+Hypervisor
+=========
+
+	Ø It is act as a bridge between hardware and os , dividing cpu, memory,  storage and networking, so multiple vm's can run independently on a single physical machine.
+
+Why virtualization 
+===============
+
+	1. Server utilization:- earlier, one server=one os= low utilizations, with virtualization one server can run 10+ vms > better hardware usage
+	2. Isolation:- each vm is isolated , if one crahses, other vm's are safe
+	3. Flexibility:- run windows, mac os, linux os on same physical machine
+	4. Cost saving:- reduces need for physical servers 
+	5. Agility :- east to create , clone, to take snapshot and migrate vm's
+
+Types of virtualization 
+==================
+
+	1. Desktop virtaulation:- ex:- vmware 
+	2. Storage virtualization:- combine multiple storage devices into one virtual pool
+	3. Network vitualization :- virtual switches, firewalls, VLANS
+
+=========================================================
+
+What:- run multiple os/vm on one physical machine using a hypervisor
+
+Why:- efficiency , cost saving, flexibility and isolation 
+
+Impact:- foundation of cloud and DevOps era.
+
+
+Types of Hypervisor
+================
+
+	1. Bare metal:- runs directly on the physical hardware (no underlying os)
+
+	Ø Provides better performance, security and efficiency 
+	Ø Common in data centres and entropies' virtualization 
+
+Ex:- 
+====
+
+	1. Vmware 
+	2. Microsoft hyper-v(when installed directly on hardware)
+	3. Xen
+	4. Kvm
+
+	Ø Living directly in your own house
+
+
+	2. Hosted Hypervisor:- it will run on top on existing os (windows, macos, linux)
+
+	Ø Easier to use but has slight performance overhead since it relies on the host os
+	Ø Good for personal use , development and testing 
+
+Ex:-
+===
+
+	1. Oracle vb
+	2. Vmware workstation
+	3. Vmware fusion (for mac)
+	4. Parallels desktop 
+
+	Ø Like renting an apartment inside a building.
+
+
+docker create 
+
+podman create
+
+docker run 
+
+podman run
+
+Why containerization 
+==================
+
+
+Docker vs podman
+===============
+
+Docker
+======
+
+	Ø Its a containerization platform 
+	Ø Follows as client server architecture 
+	Ø Docker client
+	Ø Docker daemon 
+	Ø Requires a background daemon to manage containers 
+	Ø Docker can run ur containers as a root user only 
+
+Root:- owner, group , others
+
+	Ø By default some files or folders / repos has  read, write , executable 
+	Ø 
+
+
+Podman
+=======
+
+	Ø A daemonless container engine developed by REDHAT
+Podman can run ur containers as a rootless for more secure, runs without root daemon 
+
+
+# podman commands 
+
+  19 podman build -t login:v1 .
+  20 podman images
+  21 podman run -d --name login-app -p 80:80 login:v1
+  22 podman ps
+
+
+  # container lifecylce commnads
+
+  Container life cycle 
+  ================
+  Podman ps :- it will show only running containers
+  
+  podman create: - it will create the container only but wont start the container
+  
+  Podman ps -a:- it will show you all containers including stopped.
+  
+  podman start:- to start the container
+  
+  podman run:-  it will pull the image , it will create the container and it will start the container automatically 
+  
+  podman stop :- it will stop the container
+  
+  podman restart:- it will restart the container
+  
+  podman pause:- it will pause the container
+  
+  podman unpause:- it will unpause the container
+  
+  podman logs:- 
+  
+  podman exec -it :- to login into the container 
+  
+  podman inspect:- 
+  
+  Curl:- 
+  
+  podman rm :- it will remove only stopped containers 
+  
+  podman rm -f :- it will delete running containers
+  
+  podman rmi;- it will delete only unused podman images
+  
+  Podman rmi $(docker images -aq): it will unused podman images
+  
+  podman rmi -f  $(docker images -aq):
+  
+  podman  rm $(podman ps -a):- it will delete all stopped containers
+  
+  podman rm -f (podman ps -a):it will delete all stopped containers and running containers
+
+  ========================================================================================
+
+  Container life cycle 
+  ================
+  Podman ps :- it will show only running containers
+  
+  podman create: - it will create the container only but wont start the container
+  
+  Podman ps -a:- it will show you all containers including stopped.
+  
+  podman start:- to start the container
+  
+  podman run:-  it will pull the image , it will create the container and it will start the container automatically 
+  
+  podman stop :- it will stop the container
+  
+  podman restart:- it will restart the container
+  
+  podman pause:- it will pause the container
+  
+  podman unpause:- it will unpause the container
+  
+  podman logs:- 
+  
+  podman exec -it :- to login into the container 
+  
+  podman inspect:- 
+  
+  Curl:- 
+  
+  podman rm :- it will remove only stopped containers 
+  
+  podman rm -f :- it will delete running containers
+  
+  podman rmi;- it will delete only unused podman images
+  
+  Podman rmi $(docker images -aq): it will unused podman images
+  
+  podman rmi -f  $(docker images -aq):
+  
+  podman  rm $(podman ps -a):- it will delete all stopped containers
+  
+  podman rm -f (podman ps -a):it will delete all stopped containers and running containers
