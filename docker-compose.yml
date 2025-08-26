@@ -3,12 +3,14 @@ version: '3.8'
 services:
   netflix-svc:
     image: muralisocial123/netflix-2025:latest
+    build: /frontend/Dockerifle
     container_name: netflix
     ports:
       - '80:80'
 
   nginx-svc:
     image: nginx:latest
+    build: /backned/Dockerifle
     container_name: nginx
     ports:
       - '81:80'
