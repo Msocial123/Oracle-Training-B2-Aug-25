@@ -4,3 +4,77 @@
   23 podman tag mongo:latest muralisocial123/mongo:latest
   24 podman images
   25 podman push muralisocial123/mongo:latest
+
+# =================================================
+
+podman build -t <image-name> .
+
+podman run -d --name <container-name> -p 3000:3000 <image-name>
+
+
+Podman pushing the images
+=======================
+
+    1. podman tag:- 
+
+podman tag <image-name:tag>  username/ <image-name:tag>
+
+    2. Podman login / docker login
+    3. Podman push
+
+
+
+Podman volumes
+==============
+
+    1. If any container crashes or terminated wt will happen ?
+
+    Ø App down time 
+    Ø App data
+    Ø Some important files or folders may loose 
+
+Volumes
+=======
+
+    Ø You can persistent your app data
+
+    Ø Volume is nothing but it’s a directory 
+    Ø You are going to declaring a directory as a volume
+    Ø Whenever you are going to creating a directory that means creating a volume
+    Ø Firstly you have to declare a directory as a volume
+    Ø Better to create a volume along with the container, once container created it is difficult to create a volume
+    Ø You can share one volume with no.of containers
+    Ø If any container got deleted volume will not delete.
+    Ø Whenever you are going to update ur podman image volume will not be included 
+    Ø Volume will be created out of the file system 
+
+
+Types of volumes
+==============
+
+    Ø 3 type of vloumes
+
+    1. Anonymous volume:- we are not going to assigning a meaningful name
+    2. Named volume:- 
+    3. Bind volume:- you are going to choose the location where you want to store ur data or create a volume.
+
+
+Networks in podman
+=================
+
+    1. Bridge network:- 
+
+    Ø Contaienrs will get ip from a pvt subnet
+    Ø Can communicate with each other on the same network
+    Ø In is for production env
+
+    2. Host network
+
+    Ø Contaienrs are going to sharing hosts network namespace
+    Ø No isolation , but faster 
+    Ø It is for testing, dev env
+
+    3. None network
+
+    Ø No network connectivity 
+It is for secure workloads
