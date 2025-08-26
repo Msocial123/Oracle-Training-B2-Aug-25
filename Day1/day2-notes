@@ -1,0 +1,6 @@
+  20 podman login docker.io
+  21 podman push muralisocial123/histroy-app:v1
+  22 podman images
+  23 podman tag mongo:latest muralisocial123/mongo:latest
+  24 podman images
+  25 podman push muralisocial123/mongo:latest
