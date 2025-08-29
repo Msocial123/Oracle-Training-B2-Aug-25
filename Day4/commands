@@ -1,0 +1,8 @@
+55400  kubectl get all -n rajesh-ns
+55401  kubectl describe deployment ipl-deployment -n rajesh-ns
+55402  kubectl describe deployment ipl-deployment -n murali-ns
+55403  kubectl describe deployment ipl-deployment
+55404  kubectl describe deployment ipl-deployment -n rajesh-ns
+55405  kubectl rollout undo deployment ipl-deployment -n murali-ns
+55406  kubectl get all -n murali-ns
+55407  kubectl describe deployment ipl-deployment -n murali-ns
