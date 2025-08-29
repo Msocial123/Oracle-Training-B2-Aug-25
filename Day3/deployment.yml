@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: ipl
   template:
-    metadaa:
+    metadata:
       labels:
         app: ipl
     spec:
