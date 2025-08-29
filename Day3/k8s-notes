@@ -1,0 +1,111 @@
+Why k8s
+
+28 August 2025
+09:42
+
+Disadvantages of Podman or docker
+==============================
+
+	Ø Containers are very lightweight 
+	Ø Podman can't handle load balancing 
+	Ø Podman cant support auto scaling:- resources:- servers, cpu, ram, storages 
+	Ø Podman cant support auto healing 
+
+
+What is k8s(Kubernetes)
+====================
+
+	Ø It is a containerization management tool & orchestration tool
+	Ø K8s is nothing but cluster
+	Ø Cluster is combination of nodes
+	Ø Node is a vm
+
+History of k8s
+===========
+
+	Ø K8s was created by google in 2013 in Go lng, initially k8s was not open source.
+	Ø But in 2014 google introduced k8s as open source 
+	Ø In 2014 google has donated k8s to CNCF(cloud native computing foundation)
+
+K8s feature 
+=========
+
+	1. Auto scaling:- a) Horizontal AS:- it will increase & decrease servers, b)vertical AS:- it will crease & decrease cpu, ram, storage 
+	2. Load  balancing:- it will distribute the traffic between the servers equally 
+	3. Auto healing:- whenever  any container goes down, crashes immediately it will create new container .
+	4. Platform independent:- k8s can work on any type of infrastructure whether it’s a on-premises, vm or any cloud.
+	5. Fault tolerance:- k8s helps to notify any node or pod fails .
+	6. Rollback :- it is easy to switch to previous version
+	7. Health monitoring of containers:- it will check containers health regularly 
+	8. Orchestration:- it will automatically managing and arranging ur app workload to run everything smoothly.
+
+
+K8s architecture 
+=============
+
+	Ø K8s has two type of nodes
+
+	1. Master node:- it is a brain of the cluster to manage and control entire ur cluster resources and it is responsible to make available worker nodes. 
+
+	Ø Master node has 4 components 
+
+a). API server:- it is an entry point  of cluster and whenever run any command first request will go to the api server then api will forward the request to the particular resource.
+
+b). Etcd:- it will be like a database for the cluster, it will store pods, configs, secrets', nodes info), if etcd is lost , cluster info is gone.
+
+c). Scheduler:- it will decide which worker node will run a new pod, like HR manager
+
+d). Controller manager:- I want to create 3 pods but running only 2 pods , will create missing pod.  It will ensure desired state = actual state.
+
+============================================================================
+
+	2. Worker node:- where the entire app workload is going to be deployed is called worker node, it will communicate with the master node, with help of master node only we can able to create worker node.
+
+	Ø It has 4 components 
+
+a). Kubelet:- it is responsible to create and manage pod in the worker node , it is an entry point of worker node . It will make sure the pods on that worker node are running as expected or not.
+
+b).kube-proxy:- it is network manager , it will handle networking and load balancing so that pods can talk to each other and to the outside world and it will contain the network configuration of the entire cluster.
+
+c). Pods:- it is a smallest deployable unit where container is going to be managed or running or the app should be deployed or run in the cluster.
+
+d).container runtime:- it will run the container inside the pod , it is a worker node toolkit(docker, containerd, CRI-O)
+
+Imperative style
+=============
+
+	Ø Using cli create any resources is called imperative styel
+
+
+Declarative style
+==============
+
+	Ø Using yaml file or manifest file create any resources is called declarative style.
+
+
+Pod lifecycle 
+==========
+
+	1. Pending:- the pod is accepted by k8s but not yet running
+
+Reasons:- 
+========
+	Ø Images are still being pulled
+	Ø Scheduler is deciding which node to place the pod on 
+	Ø Resources (cpu/memory)
+
+
+	2. Running:- the pod is shceduled on a node and at least one container is running
+
+	3. Succeeded:- all containers in the pod have terminated successfully 
+	4. Failed:- all containers have terminated but at least one fialed.
+	5. Unknown:- pod status can not be determined (node communication issue)
+
+
+containers states inside pod
+=======================
+	Ø Each container inside a pod can be in one of these states
+
+	1. Waiting:- container is created but not yet started (waiting for the image)
+	2. Running:- the container is actively running
+Terminated:- the container has finished execution (success or failure)
