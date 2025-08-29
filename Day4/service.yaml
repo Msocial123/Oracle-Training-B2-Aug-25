@@ -48,15 +48,32 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ipl-svc
-  namespace: murali-ns
+  name: {{ .Release.Name }}-service
+  namespace: {{ .Values.namespace }}
 spec: 
   selector:
-    app: ipl
+    app: {{ .Values.labels.app }}
   ports:
     - protocol: TCP
-      port: 80  # svc port number its our wish
-      targetPort: 3000  # container port number
+      port: {{ .Values.port }} # svc port number its our wish
+      targetPort: {{ .Values.targetPort}}  # container port number
+  type: {{ .Values.service.type }}
+
+# ===============================
+
+values.yaml
+===========
+namespace: murali-ns
+replicas: 5
+labels:
+  app: ipl
+name: c-1
+image:
+  repository: muralisocial123/ipl
+  tag: latest
+port: 80
+targetPort: 3000
+service:
   type: LoadBalancer
 
 ---

@@ -1,0 +1,52 @@
+SERVICE 
+
+28 August 2025
+20:38
+
+Svc types
+========
+
+	1. ClusterIP:- 
+
+	Ø it is a default svc in any cluster
+	Ø Whenever you want to expose the app within the cluster you can use clusterip svc type
+	Ø It will expose ur app within a cluster only 
+	Ø It will give one cluster ip add and you can't access the app outside the cluster
+	Ø It is for prod use.
+
+
+	2. NodePort:- 
+
+	Ø It will expose the app on each node with static ip add 
+	Ø You can access the app outside the cluster as well
+	Ø It has port limitations, it allows you only port numbers between 30000 to 32767 on every node in a cluster
+	Ø It is is only testing
+
+
+	3. Load Balancer:-
+
+	Ø It will expose the app outside the cluster
+	Ø It will give an external ip add for accessing outside the cluster
+	Ø There is no any port limitations 
+	Ø It will give cost (it's not free)
+	Ø Cloud provider will provide lb and its ip add
+	Ø There will be a ip add limitations (you can't get ip add more than two)
+	Ø It is used for temporary purpose 
+	Ø Whenever you don’t have any domain name or you need to access the app outside the cluster without any port limitations.
+
+
+
+	4. ExternalName:
+
+	Ø It is a special type of svc in k8s
+	Ø Instead of pointing to pods inside the cluster, it maps a svc name to an external dns name
+	Ø It will work like a CNAMEr record in DNS
+	Ø K8s does not create clusterip/nodeport for this svc type 
+	Ø It just returns a CNAME alias to the client 
+
+
+==================================
+
+LB:- 5$, flipkart app has 8 svc's > 40$
+
+Client budget is 25$ 
